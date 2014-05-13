@@ -65,6 +65,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
+    private Set<Project> projects = new HashSet<Project>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -173,8 +174,23 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)    
+    @JoinTable(
+            name = "user_project",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    public Set<Project> getProjects() {
+		return projects;
+	}
 
-    /**
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
+
+	/**
      * Convert user roles to LabelValue objects for convenience.
      *
      * @return a list of LabelValue objects with role information
