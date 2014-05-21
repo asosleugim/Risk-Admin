@@ -9,5 +9,7 @@
         <mapping class="org.appfuse.model.User"/>
         <mapping class="org.appfuse.model.Role"/>
         <mapping class="org.appfuse.model.Project"/>
+        <mapping class="org.appfuse.model.Risk"/>
+        <mapping class="org.appfuse.model.RiskTracking"/>
     </session-factory>
 </hibernate-configuration>

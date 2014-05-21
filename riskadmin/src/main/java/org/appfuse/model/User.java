@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -66,6 +67,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private Set<Project> projects = new HashSet<Project>();
+    private Set<Risk> risks = new HashSet<Risk>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -188,6 +190,15 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
+	}
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+	public Set<Risk> getRisks() {
+		return risks;
+	}
+
+	public void setRisks(Set<Risk> risks) {
+		this.risks = risks;
 	}
 
 	/**
