@@ -734,7 +734,7 @@
         <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
         <jdbc.url>jdbc:mysql://localhost/${db.name}?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true</jdbc.url>
         <jdbc.username>root</jdbc.username>
-        <jdbc.password>mysqldata</jdbc.password>
+        <jdbc.password>admin</jdbc.password>
         <jdbc.validationQuery>SELECT 1 + 1</jdbc.validationQuery>
     </properties>
 </project>

@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
@@ -30,6 +32,7 @@ public class Project extends BaseObject {
 	private String projectCode;
 	private String projectName;
 	private String projectDescription;
+	private Set<Risk> risks = new HashSet<Risk>();
 	private Set<User> users = new HashSet<User>();
 	
 
@@ -69,6 +72,21 @@ public class Project extends BaseObject {
 
 	public void setProjectDescription(String projectDescription) {
 		this.projectDescription = projectDescription;
+	}
+	
+	
+
+	public Set<Risk> getRisks() {
+		return risks;
+	}
+
+	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+	public void setRisks(Set<Risk> risks) {
+		this.risks = risks;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
