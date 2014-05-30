@@ -74,13 +74,11 @@ public class Project extends BaseObject {
 		this.projectDescription = projectDescription;
 	}
 	
-	
-
+	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
 	public Set<Risk> getRisks() {
 		return risks;
 	}
 
-	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
 	public void setRisks(Set<Risk> risks) {
 		this.risks = risks;
 	}
