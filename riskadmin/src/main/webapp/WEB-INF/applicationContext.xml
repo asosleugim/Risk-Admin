@@ -16,7 +16,7 @@
 	<bean id="projectManager" class="org.appfuse.service.impl.GenericManagerImpl">    
 	    <constructor-arg>
 	    	<bean id="projectDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate">
-		    	<constructor-arg value="package org.appfuse.model.Project"/>
+		    	<constructor-arg value="org.appfuse.model.Project"/>
 		    </bean>
 	    </constructor-arg>
     </bean>
