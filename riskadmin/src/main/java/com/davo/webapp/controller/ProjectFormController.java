@@ -10,11 +10,14 @@ import org.appfuse.model.Project;
 import org.appfuse.service.GenericManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Controller
+@RequestMapping("/projectform*")
 public class ProjectFormController extends BaseFormController {
 	
 	private GenericManager<Project, Long> projectManager;
@@ -51,7 +54,7 @@ public class ProjectFormController extends BaseFormController {
             validator.validate(project, errors);
  
             if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-                return "personform";
+                return "projectform";
             }
         }
  
@@ -63,14 +66,14 @@ public class ProjectFormController extends BaseFormController {
  
         if (request.getParameter("delete") != null) {
             projectManager.remove(project.getId());
-            saveMessage(request, getText("person.deleted", locale));
+            saveMessage(request, getText("project.deleted", locale));
         } else {
         	projectManager.save(project);
             String key = (isNew) ? "person.added" : "person.updated";
             saveMessage(request, getText(key, locale));
  
             if (!isNew) {
-                success = "redirect:personform?id=" + project.getId();
+                success = "redirect:projectform?id=" + project.getId();
             }
         }
  
